@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "DateBooked";
+    var msg = TempData["AlertMessage"] ?? string.Empty;
+}
+<script>
+    var msg = '@msg';
+    if (msg)
+        alert(msg);
+</script>
+<h2 style="color:black">Appointment has been booked.</h2>
+<hr />
+<h3 style="color:black">Check your status for confirmation of the appointment.</h3>
+<li>@Html.ActionLink("Book new appointment","Create","Bookings")</li>

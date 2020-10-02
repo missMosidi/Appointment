@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Appointment.Models.Style>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Hair_Cut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hair_Cut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StyleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StyleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StyleId })
+        </td>
+    </tr>
+}
+
+</table>

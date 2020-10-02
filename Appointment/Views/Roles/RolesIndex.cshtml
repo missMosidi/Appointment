@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Appointment.Models.RolesViewModel>
+@{
+    ViewBag.Title = "RolesIndex";
+}
+
+<div class="container">
+    <br />
+    <h2>Manage Roles</h2>
+
+    <p>
+        <a href="@(Url.Action("AddRole"))" class="btn btn-outline-dark"><span class="fade fa-plus"></span>Add Role</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model=>model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.RoleName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit","EditRole",new { id = item.RoleId })|
+                        <a href="#" onclick="deleteItem('@(item.RoleId)')">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2">
+                    <h1>No Available Roles.</h1>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+</div>
+<script>
+    function deleteItem(id) {
+        var doDelete = confirm("Are you sure you want to remove this role");
+        if (doDelete) {
+            $.ajax({
+                type: "Get",
+                url: "@Url.Action("Delete")?id=" + id,
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    location.reload();
+                },
+                error: function (e) {
+                    return;
+                }
+            });
+        }
+    }
+</script>

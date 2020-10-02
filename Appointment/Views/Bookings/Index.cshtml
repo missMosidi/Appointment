@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Appointment.Models.Booking>
+@using Appointment.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Logic lo = new Logic();
+}
+
+<h2>Bookings</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bookingTime.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.style.Hair_Cut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookDate)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Hair_Cut)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bookingTime.Time)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.style.Hair_Cut)
+        </td>*@
+        <td>
+            <p>@lo.HairCutName(item.StyleId)</p>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookDate)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Hair_Cut)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsFree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.BookId }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookId })
+            @Html.ActionLink("Confirm", "Confirmed", new { id=item.BookId})
+        </td>
+    </tr>
+}
+
+</table>
+<h5>@ViewBag.Search</h5>

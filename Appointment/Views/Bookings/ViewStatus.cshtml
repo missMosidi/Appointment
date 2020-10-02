@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Appointment.Models.Booking>
+@{
+    ViewBag.Title = "ViewStatus";
+}
+
+<h2>Bookings</h2>
+<h3>Status List</h3>
+@{ 
+    foreach (var item in Model)
+    {
+        <div>
+            <h5 style="color:yellow">Booking</h5>
+            <dl class="dl-horizontal">
+                <dt>
+                    Date Booked:
+                </dt>
+                <dd>
+                    @item.BookDate.ToShortDateString()
+                </dd>
+                <dt>
+                    Date Created:
+                </dt>
+                <dd>
+                    @item.DateCreated.ToShortDateString()
+                </dd>
+                <dt>
+                    Status:
+                </dt>
+                <dd>
+                    @if (item.Status == "Confirmed")
+                    {
+                        <h5 style="color:green">@item.Status</h5>
+                    }
+                    @if(item.Status=="Not Yet Confirmed")
+                    {
+                        <h5 style="color:black">@item.Status</h5>
+                    }
+                </dd>
+            </dl>
+        </div>
+    }
+}
